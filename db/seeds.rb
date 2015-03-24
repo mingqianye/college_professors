@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Professor.create({name: 'Jillian Morrison'}, :without_protection => true)
+Professor.create({name: 'Jillian Morrison'}, without_protection: true)
 Professor.create({name: 'Peter Erdos'}, without_protection: true)
 Professor.create({name: 'Arthi Gupta'}, without_protection: true)
 Professor.create({name: 'William Yin'}, without_protection: true)

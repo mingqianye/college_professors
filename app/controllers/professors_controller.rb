@@ -2,7 +2,7 @@ class ProfessorsController < ApplicationController
 
   # GET /professors
   def index
-    @professors = Professor.all
+    @professors = Professor.includes(:subjects).all
 
     respond_to do |format|
       format.html
@@ -57,6 +57,11 @@ class ProfessorsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to professors_url }
     end
+  end
+
+  # POST /professors/1/global_subject/
+  def global_subject
+
   end
 
   private
