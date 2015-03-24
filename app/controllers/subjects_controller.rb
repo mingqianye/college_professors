@@ -83,6 +83,29 @@ class SubjectsController < ApplicationController
     end
   end
 
+  # GET /new_global_subject
+  def new_global_subject
+    @subject = Subject.new
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  # POST /create_global_subjects
+  def create_global_subjects
+    professors = Professor.all
+    respond_to do |format|
+      begin
+        professors.each do |professor|
+          professor.subjects.create(subject_params)
+        end
+        format.html { redirect_to root_path, notice: 'Subject was successfully created.' }
+      rescue
+        format.html { render action: :create_global_subjects }
+      end
+    end
+  end
+
   private
   def subject_params
     params.require(:subject).permit(:name)

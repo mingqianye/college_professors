@@ -1,0 +1,27 @@
+<h1>New global subject</h1>
+
+<%= form_for(@subject, url: create_global_subjects_path) do |f| %>
+    <% if @subject.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
+
+          <ul>
+            <% @subject.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
+
+
+<%= link_to 'Back', root_path %>
