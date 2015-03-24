@@ -1,12 +1,13 @@
 class SubjectsController < ApplicationController
-  # GET /subjects
-  # GET /subjects.json
-  def index
-    @subjects = Subject.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @subjects }
+  # GET /professors/:professor_id/subjects
+  def index
+    professor = Professor.find_by_id(params[:professor_id])
+    if professor
+      subjects = professor.subjects
+      respond_to do |format|
+        format.json { render json: subjects }
+      end
     end
   end
 
@@ -21,14 +22,16 @@ class SubjectsController < ApplicationController
     end
   end
 
-  # GET /subjects/new
-  # GET /subjects/new.json
+  # GET /professors/:professor_id/subjects/new
   def new
-    @subject = Subject.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @subject }
+    @professor = Professor.find_by_id(params[:professor_id])
+    if @professor
+      @subject = @professor.subjects.build
+      respond_to do |format|
+        format.html
+      end
+    else
+      redirect_to root_path
     end
   end
 
@@ -37,19 +40,19 @@ class SubjectsController < ApplicationController
     @subject = Subject.find(params[:id])
   end
 
-  # POST /subjects
-  # POST /subjects.json
+  # POST /professors/:professor_id/subjects
   def create
-    @subject = Subject.new(params[:subject])
-
-    respond_to do |format|
-      if @subject.save
-        format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
-        format.json { render json: @subject, status: :created, location: @subject }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @subject.errors, status: :unprocessable_entity }
+    professor = Professor.find_by_id(params[:professor_id])
+    if professor
+      respond_to do |format|
+        if professor.subjects.create(subject_params)
+          format.html { redirect_to root_path, notice: 'Subject was successfully created.' }
+        else
+          format.html { render action: "new" }
+        end
       end
+    else
+      redirect_to root_path
     end
   end
 
@@ -79,5 +82,10 @@ class SubjectsController < ApplicationController
       format.html { redirect_to subjects_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def subject_params
+    params.require(:subject).permit(:name)
   end
 end
