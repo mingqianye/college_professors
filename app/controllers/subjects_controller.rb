@@ -2,23 +2,13 @@ class SubjectsController < ApplicationController
 
   # GET /professors/:professor_id/subjects
   def index
-    professor = Professor.find_by_id(params[:professor_id])
-    if professor
-      subjects = professor.subjects
+    @professor = Professor.find_by_id(params[:professor_id])
+    if @professor
+      @subjects = @professor.subjects
       respond_to do |format|
-        format.json { render json: subjects }
+        format.html
+        format.json { render json: @subjects }
       end
-    end
-  end
-
-  # GET /subjects/1
-  # GET /subjects/1.json
-  def show
-    @subject = Subject.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @subject }
     end
   end
 
@@ -35,9 +25,17 @@ class SubjectsController < ApplicationController
     end
   end
 
-  # GET /subjects/1/edit
+  # GET /professors/:professor_id/subjects/1/edit
   def edit
-    @subject = Subject.find(params[:id])
+    @professor = Professor.find_by_id(params[:professor_id])
+    if @professor
+      @subject = Subject.find(params[:id])
+      respond_to do |format|
+        format.html
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   # POST /professors/:professor_id/subjects
@@ -56,31 +54,32 @@ class SubjectsController < ApplicationController
     end
   end
 
-  # PUT /subjects/1
-  # PUT /subjects/1.json
+  # PUT /professors/:professor_id/subjects/1
   def update
-    @subject = Subject.find(params[:id])
-
-    respond_to do |format|
-      if @subject.update_attributes(params[:subject])
-        format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @subject.errors, status: :unprocessable_entity }
+    professor = Professor.find_by_id(params[:professor_id])
+    if professor
+      @subject = Subject.find(params[:id])
+      respond_to do |format|
+        if @subject.update_attributes(subject_params)
+          format.html { redirect_to professor_subjects_path(professor), notice: 'Subject was successfully updated.' }
+        else
+          format.html { render action: "edit" }
+        end
       end
+    else
+      redirect_to root_path
     end
   end
 
-  # DELETE /subjects/1
-  # DELETE /subjects/1.json
+  # DELETE /professors/:professor_id/subjects/1
   def destroy
-    @subject = Subject.find(params[:id])
-    @subject.destroy
-
-    respond_to do |format|
-      format.html { redirect_to subjects_url }
-      format.json { head :no_content }
+    professor = Professor.find_by_id(params[:professor_id])
+    if professor
+      @subject = Subject.find(params[:id])
+      @subject.destroy
+      respond_to do |format|
+        format.html { redirect_to professor_subjects_path(professor) }
+      end
     end
   end
 

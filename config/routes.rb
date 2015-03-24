@@ -2,8 +2,8 @@ Across::Application.routes.draw do
 
   root to: 'professors#index'
 
-  resources :professors do
-    resources :subjects
+  resources :professors, except: [:show] do
+    resources :subjects, except: [:show]
   end
 
 

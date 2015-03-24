@@ -1,21 +1,28 @@
 <h1>Listing subjects</h1>
 
+<p id="notice"><%= notice %></p>
+
 <table>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Professor ID</th>
+    <th>Edit</th>
+    <th>Destroy</th>
   </tr>
 
 <% @subjects.each do |subject| %>
   <tr>
-    <td><%= link_to 'Show', subject %></td>
-    <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
-    <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= subject.id %></td>
+    <td><%= subject.name %></td>
+    <td><%= @professor.id %></td>
+    <td><%= link_to 'Edit', edit_professor_subject_path(@professor, subject) %></td>
+    <td><%= link_to 'Destroy', professor_subject_path(@professor, subject), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Subject', new_subject_path %>
+<%= link_to 'New Subject', new_professor_subject_path(@professor) %> |
+<%= link_to 'Back', root_path %>

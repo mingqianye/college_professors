@@ -9,17 +9,6 @@ class ProfessorsController < ApplicationController
     end
   end
 
-  # GET /professors/1
-  # GET /professors/1.json
-  def show
-    @professor = Professor.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @professor }
-    end
-  end
-
   # GET /professors/new
   def new
     @professor = Professor.new
@@ -40,7 +29,7 @@ class ProfessorsController < ApplicationController
 
     respond_to do |format|
       if @professor.save
-        format.html { redirect_to @professor, notice: 'Professor was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Professor was successfully created.' }
       else
         format.html { render action: "new" }
       end
@@ -49,11 +38,11 @@ class ProfessorsController < ApplicationController
 
   # PUT /professors/1
   def update
-    @professor = Professor.find(params[:id])
+    professor = Professor.find(params[:id])
 
     respond_to do |format|
-      if @professor.update_attributes(professor_params)
-        format.html { redirect_to @professor, notice: 'Professor was successfully updated.' }
+      if professor.update_attributes(professor_params)
+        format.html { redirect_to root_path, notice: 'Professor was successfully updated.' }
       else
         format.html { render action: "edit" }
       end
