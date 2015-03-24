@@ -2,18 +2,25 @@
 
 <table>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>ID</th>
+    <th>Name</th>
+    <th>No. of subjects</th>
+    <th>Show</th>
+    <th>Edit</th>
+    <th>Destroy</th>
+    <th>Add a subject</th>
   </tr>
-
-<% @professors.each do |professor| %>
-  <tr>
-    <td><%= link_to 'Show', professor %></td>
-    <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
-    <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <% @professors.each do |professor| %>
+      <tr>
+        <td><%= professor.id %></td>
+        <td class='name' title=''><%= professor.name %></td>
+        <td><%= professor.subjects.count %></td>
+        <td><%= link_to 'Show', professor %></td>
+        <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
+        <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Add a subject', new_professor_subject_path(professor) %>
+      </tr>
+  <% end %>
 </table>
 
 <br />
