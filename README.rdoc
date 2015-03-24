@@ -1,51 +1,8 @@
+Basic Crud Application: College Professors (see attachement)
+
 == Getting Started
 
 1. bundle
 2. rake db:create
 3. rake db:migrate
 4. rake db:seed
-
-Basic Crud Application: College Professors
-Write a web application to manage professors and the subjects they teach. A database schema for such a
-system might consist of three tables:
-professors
-id name
-1 Jillian Morrison
-2 Peter Erdos
-3 Arthi Gupta
-4 William Yin
-subjects
-id name
-1 Physics
-2 English Literature
-3 American History
-4 Computer Science
-5 Economics
-professors_subjects
-professor_id subject_id
-1 4
-2 1
-2 2
-3 3
-3 4
-Functionality
-● The user should be able to view, through a web browser, a table comprising the names of all
-professors and the number of subjects they teach.
-● When the user hovers over professor’s name, a bounded box containing a list of the subjects that
-professor teaches appears.
-● The user can add or remove a professor.
-● The user can add a subject to the list of subjects the professor teachers.
-Requirements
-● Code should run without error.
-● Implement all of the functionality above using Ruby on Rails.
-● Make the application respond immediately to changes so that whenever the user makes any
-change, the UI updates immediately to reflect it.
-Extra credit
-● Allow updating a professor
-● Allow deleting and updating subjects for a professor
-● Allow ability to add subjects to the global list of subjects.
-● Place a textbox above the table of professors that allows the user to filter by professor name as s/he
-types.
-● Allow the user to sort the table of professors by number of subjects they teach.
-The application must work on IE10+ and the latest versions of Chrome and Firefox. Use of jQuery is
-permitted but optional.
