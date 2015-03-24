@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(:version => 20150324041050) do
 
   create_table "professors", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.integer  "subjects_count", :default => 0
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "count_of_subjects", :default => 0
   end
 
   create_table "professors_subjects", :force => true do |t|
