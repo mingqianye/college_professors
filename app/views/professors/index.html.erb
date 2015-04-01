@@ -24,8 +24,10 @@
         <td><%= professor.subjects.size %></td>
         <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
         <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Add a subject', new_professor_subject_path(professor) %>
+        <td><%= link_to 'Add a subject', new_professor_subject_path(professor) %></td>
         <td><%= link_to 'Show all subjects', professor_subjects_path(professor) %></td>
+        <td><%= link_to "Add a Ta", new_ta_path %></td>
+        <td><%= link_to "Show all Tas", tas_path %></td>
       </tr>
   <% end %>
 </table>

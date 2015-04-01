@@ -6,6 +6,8 @@ Across::Application.routes.draw do
     resources :subjects, except: [:show]
   end
 
+  resources :tas
+
   get 'new_global_subject', to: 'subjects#new_global_subject'
   post 'create_global_subjects', to: 'subjects#create_global_subjects'
 

@@ -1,0 +1,27 @@
+<h1>Listing ta</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Subject</th>
+    <th>Professor</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tas.each do |ta| %>
+  <tr>
+    <td><%= ta.name %></td>
+    <td><%= ta.subject_id %></td>
+    <td><%= ta.professor_id %></td>
+    <td><%= link_to 'Show', ta %></td>
+    <td><%= link_to 'Edit', edit_ta_path(ta) %></td>
+    <td><%= link_to 'Destroy', ta, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ta', new_professor_ta_path %>

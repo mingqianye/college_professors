@@ -1,0 +1,29 @@
+<%= form_for(@ta) do |f| %>
+  <% if @ta.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ta.errors.count, "error") %> prohibited this tum from being saved:</h2>
+
+      <ul>
+      <% @ta.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :subject_id %><br />
+    <%= f.text_field :subject_id %>
+  </div>
+  <div class="field">
+    <%= f.label :professor_id %><br />
+    <%= f.text_field :professor_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
