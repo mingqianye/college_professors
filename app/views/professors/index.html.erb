@@ -15,7 +15,7 @@
       <tr>
         <td><%= professor.id %></td>
         <td class='name' title=''><%= professor.name %></td>
-        <td><%= professor.subjects.size %></td>
+        <td><%= professor.count_of_subjects %></td>
         <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
         <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Add a subject', new_professor_subject_path(professor) %>
