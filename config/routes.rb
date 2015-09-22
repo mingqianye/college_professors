@@ -9,6 +9,7 @@ Across::Application.routes.draw do
   get 'new_global_subject', to: 'subjects#new_global_subject'
   post 'create_global_subjects', to: 'subjects#create_global_subjects'
 
+  get "search_professors" => "professors#search"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -4,6 +4,20 @@
 
 <table>
   <tr>
+    <td>Search professor by name:</td>
+  </tr>
+  <tr>
+    <td><form action="search_professors" method="get">
+        <input type="text" name="search_query" value="<%= @search_query %>"></input>
+        <input type="checkbox" name="hide_professors" <% if @hide_professors.present? %>checked<% end %>></input>
+        Hide professors with zero subjects
+        <br>
+        <input type="submit" value="Search"></input> 
+      </form>
+    </td>
+  </tr>
+<table>
+  <tr>
     <th>ID</th>
     <th>Name</th>
     <th>No. of subjects </th>

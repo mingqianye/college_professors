@@ -9,6 +9,23 @@ class ProfessorsController < ApplicationController
     end
   end
 
+  def search
+    @search_query = params[:search_query]
+    @hide_professors = params[:hide_professors]
+    unless @search_query.present? 
+      flash[:notice] = "You must enter a name to search for"
+      return redirect_to root_path
+    end
+    @professors = Professor.where("name like '%#{@search_query}%'")
+    if @hide_professors.present?
+      @professors = @professors.where("count_of_subjects > 0")
+    end
+    SearchQuery.create(query_string: @search_query, hide_professors: @hide_professors)
+    respond_to do |format|
+      format.html { render action: "index" }
+    end
+  end
+
   # GET /professors/new
   def new
     @professor = Professor.new

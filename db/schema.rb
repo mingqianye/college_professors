@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150324041050) do
+ActiveRecord::Schema.define(:version => 20150922231218) do
 
   create_table "professors", :force => true do |t|
     t.string   "name"
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(:version => 20150324041050) do
 
   add_index "professors_subjects", ["professor_id"], :name => "index_professors_subjects_on_professor_id"
   add_index "professors_subjects", ["subject_id"], :name => "index_professors_subjects_on_subject_id"
+
+  create_table "search_queries", :force => true do |t|
+    t.string   "query_string"
+    t.boolean  "hide_professors"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "subjects", :force => true do |t|
     t.string   "name"
