@@ -2,8 +2,7 @@ class ProfessorsController < ApplicationController
 
   # GET /professors
   def index
-    @q = Professor.ransack(params[:q])
-    @professors = @q.result.includes(:subjects).all
+    @professors = Professor.all
 
     respond_to do |format|
       format.html
